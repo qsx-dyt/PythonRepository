@@ -1,0 +1,12 @@
+/Test
+/venv
+/lstm-char-cnn-tensorflow-master
+FER/CK+/
+FER/ClassifiedDataCK+/
+FER/fer2013/
+FER/log/
+FER/model/
+FER/PretreatedDataCk+/
+FER/test/
+FER/.idea/
+FER/dataset/
