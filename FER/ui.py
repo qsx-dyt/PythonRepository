@@ -11,15 +11,14 @@ class EmotionRecognitionUI(QDialog):
     def __init__(self):
         super().__init__()
         # 人脸分类器初始化
-        self.labels = None
-        self.modelText = None
-        self.model = None
         self.face_cascade = cv2.CascadeClassifier('util/haarcascade_frontalface_default.xml')
         # 加载模型
         self.model = tf.keras.models.load_model('model/VGG-LSTM_1.h5')
+        self.modelText = 'VGG-LSTM_1'
         # 定义标签列表
         self.ckp_labels = ['anger', 'contempt', 'disgust', 'fear', 'happy', 'sadness', 'surprise']
         self.fer_labels = ['anger', 'contempt', 'fear', 'happy', 'sadness', 'surprise', 'neutral']
+        self.labels = self.ckp_labels
         # 创建计时器
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_frame)
@@ -69,15 +68,16 @@ class EmotionRecognitionUI(QDialog):
         self.result.clear()
 
     def emotion_recognition(self, frame):
+        start_time = cv2.getTickCount()
         # 人脸检测
-        faces = self.face_cascade.detectMultiScale(frame, scaleFactor=1.1, minNeighbors=3)
+        faces = self.face_cascade.detectMultiScale(frame, scaleFactor=1.15, minNeighbors=5)
         for (x, y, w, h) in faces:
             # 人脸图像
             face = frame[y:y + h, x:x + w]
             # 调整图像大小为模型的输入大小
             face = cv2.resize(face, (48, 48))
             # 将图像转换为 4D 张量
-            if self.modelText == "CNN-LSTM":
+            if self.modelText[0:-2] == "CNN-LSTM":
                 # 将图像转换为灰度图像
                 gray = cv2.cvtColor(face, cv2.COLOR_BGR2GRAY)
                 # 将图像标准化到 [0, 1] 的范围内
@@ -92,6 +92,10 @@ class EmotionRecognitionUI(QDialog):
             # 将图像传递给模型进行分类
             preds = self.model.predict(image)
             label = self.ckp_labels[preds.argmax()]
+            # 显示时间、结果
+            end_time = cv2.getTickCount()
+            time_in_sec = (end_time - start_time) / cv2.getTickFrequency()
+            self.time.setText(str(time_in_sec))
             self.probability.setText(str(preds[0, preds.argmax()]))
             self.result.setText(label)
             # 画矩形框

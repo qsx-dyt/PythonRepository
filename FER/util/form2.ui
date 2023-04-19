@@ -237,7 +237,7 @@
    <property name="geometry">
     <rect>
      <x>790</x>
-     <y>170</y>
+     <y>290</y>
      <width>141</width>
      <height>41</height>
     </rect>
@@ -250,7 +250,7 @@
    <property name="geometry">
     <rect>
      <x>790</x>
-     <y>330</y>
+     <y>410</y>
      <width>141</width>
      <height>41</height>
     </rect>
@@ -263,7 +263,7 @@
    <property name="geometry">
     <rect>
      <x>790</x>
-     <y>150</y>
+     <y>270</y>
      <width>110</width>
      <height>21</height>
     </rect>
@@ -291,7 +291,7 @@
    <property name="geometry">
     <rect>
      <x>790</x>
-     <y>310</y>
+     <y>390</y>
      <width>110</width>
      <height>21</height>
     </rect>
@@ -313,6 +313,47 @@
    </property>
    <property name="text">
     <string>置信度：</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="time">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>160</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 12pt &quot;Times New Roman&quot;;</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_4">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>140</y>
+     <width>110</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>110</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>110</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 11pt &quot;Times New Roman&quot;;</string>
+   </property>
+   <property name="text">
+    <string>耗时：</string>
    </property>
   </widget>
  </widget>
