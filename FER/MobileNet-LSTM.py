@@ -7,7 +7,7 @@ tf.config.list_physical_devices('GPU')
 data_path = "dataset/color/"
 
 # 加载HDF5格式的数据集
-with h5py.File(data_path+'ckp.hdf5', 'r') as f:
+with h5py.File(data_path+'fer2013.hdf5', 'r') as f:
     train_data = f['train_data'][:]
     train_labels = f['train_labels'][:]
     val_data = f['val_data'][:]
@@ -37,7 +37,7 @@ tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir="log/ML", histogra
 early_stop = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=7, verbose=1)
 
 # 训练模型
-history = model.fit(train_data, train_labels, batch_size=32, epochs=100, verbose=1,
+history = model.fit(train_data, train_labels, batch_size=64, epochs=100, verbose=1,
                     validation_data=(val_data, val_labels), callbacks=[tensorboard_callback, early_stop])
 
 # 评估模型
@@ -47,4 +47,4 @@ print("测试准确率：", score[1])
 # 保存模型
 if not os.path.exists("model"):
     os.makedirs("model")
-model.save("model/MobileNet-LSTM.h5")
+model.save("model/MobileNet-LSTM_2.h5")

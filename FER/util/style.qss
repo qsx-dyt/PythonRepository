@@ -1,0 +1,49 @@
+#EmotionIdentify {
+    background-color: #E8CACA;
+    border-radius: 20px;
+    border: 5px solid #ebd9d9;
+    padding: 5px 10px;
+}
+
+QPushButton {
+    background-color: #58D68D;
+    color: white;
+    border-radius: 10px;
+    border: 4px solid #FBF7F7;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #27AE60;
+    border: 1px solid #27AE60;
+}
+
+QLabel {
+    border: 4px solid #FBF7F7;
+    border-radius: 20px;
+    background-color: #E8CACA;
+    padding: 5px;
+}
+
+QComboBox {
+    background-color: #D6EAF8;
+    border: 3px solid #FBF7F7;
+    border-radius: 5px;
+    padding: 2px 3px 2px 3px;
+}
+
+QComboBox:hover {
+    background-color: #A9CCE3;
+}
+
+QLineEdit {
+    background-color: #E8CACA;
+    border-radius: 5px;
+}
+
+QTextEdit {
+    background-color: #A9CCE3;
+    border: 4px solid #FBF7F7;
+    border-radius: 10px;
+	padding: 0px 2px 0px 3px; 
+}

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Widget</class>
+ <class>EmotionIdentify</class>
  <widget class="QWidget" name="EmotionIdentify">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1400</width>
+    <width>1000</width>
     <height>650</height>
    </rect>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1400</width>
+    <width>1000</width>
     <height>650</height>
    </size>
   </property>
@@ -26,9 +26,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>30</y>
+     <y>140</y>
      <width>111</width>
-     <height>581</height>
+     <height>461</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0">
@@ -140,8 +140,8 @@
   <widget class="QLabel" name="frame_label">
    <property name="geometry">
     <rect>
-     <x>146</x>
-     <y>28</y>
+     <x>170</x>
+     <y>30</y>
      <width>601</width>
      <height>581</height>
     </rect>
@@ -150,17 +150,169 @@
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="table_label">
+  <widget class="QComboBox" name="ModelcomboBox">
    <property name="geometry">
     <rect>
-     <x>759</x>
-     <y>28</y>
-     <width>601</width>
-     <height>581</height>
+     <x>20</x>
+     <y>110</y>
+     <width>125</width>
+     <height>30</height>
     </rect>
    </property>
+   <property name="minimumSize">
+    <size>
+     <width>125</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>125</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 9pt &quot;Times New Roman&quot;;</string>
+   </property>
+   <item>
+    <property name="text">
+     <string>VGG-LSTM_1</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>VGG-LSTM_2</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>CNN-LSTM_1</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>CNN-LSTM_2</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>MobileNet-LSTM_1</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>MobileNet-LSTM_2</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>90</y>
+     <width>110</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>110</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>110</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 11pt &quot;Times New Roman&quot;;</string>
+   </property>
    <property name="text">
-    <string/>
+    <string>选择模型：</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="result">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>170</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 12pt &quot;Times New Roman&quot;;</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="probability">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>330</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 12pt &quot;Times New Roman&quot;;</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>150</y>
+     <width>110</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>110</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>110</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 11pt &quot;Times New Roman&quot;;</string>
+   </property>
+   <property name="text">
+    <string>识别结果：</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_3">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>310</y>
+     <width>110</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>110</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>110</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 11pt &quot;Times New Roman&quot;;</string>
+   </property>
+   <property name="text">
+    <string>置信度：</string>
    </property>
   </widget>
  </widget>

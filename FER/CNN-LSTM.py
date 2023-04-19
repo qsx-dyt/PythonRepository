@@ -35,7 +35,7 @@ model = tf.keras.Sequential([
     tf.keras.layers.TimeDistributed(tf.keras.layers.Conv2D(128, (3, 3), activation='relu')),
     tf.keras.layers.TimeDistributed(tf.keras.layers.MaxPooling2D((2, 2))),
     tf.keras.layers.TimeDistributed(tf.keras.layers.Flatten()),
-    tf.keras.layers.LSTM(128, dropout=0.2, recurrent_dropout=0.2, kernel_regularizer=tf.keras.regularizers.l2(0.01), return_sequences=False),
+    tf.keras.layers.LSTM(128, dropout=0.2, recurrent_dropout=0.2, return_sequences=False),
     tf.keras.layers.Dense(64, activation='relu'),
     tf.keras.layers.Dropout(0.5),
     tf.keras.layers.Dense(7, activation='softmax')
@@ -50,7 +50,7 @@ model.compile(loss="categorical_crossentropy", optimizer="RMSprop", metrics=['ac
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir="log/CL", histogram_freq=1)
 
 # 定义EarlyStopping回调函数
-early_stop = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=7, verbose=1)
+early_stop = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=6, verbose=1)
 
 # 训练模型
 history = model.fit(train_data, train_labels, batch_size=32, epochs=100, verbose=1,
@@ -63,4 +63,4 @@ print("测试准确率：", score[1])
 # 保存模型
 if not os.path.exists("model"):
     os.makedirs("model")
-model.save("model/CNN-LSTM.h5")
+model.save("model/CNN-LSTM_1.h5")

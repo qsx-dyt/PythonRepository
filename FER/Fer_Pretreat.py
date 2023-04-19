@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 import tensorflow as tf
 
 # 定义路径
-dataset_save_path = "dataset/gray/"
+dataset_save_path = "dataset/color/"
 path = "fer2013/"
 dataset_path = image_path = path+"images/"
 
@@ -36,8 +36,7 @@ def classify_images():
     for i in range(len(data)):
         image = data['pixels'][i].reshape((48, 48)).astype('uint8')
         emotion = data['emotion'][i]
-        faces = face_cascade.detectMultiScale(image, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30),
-                                              flags=cv2.CASCADE_SCALE_IMAGE)
+        faces = face_cascade.detectMultiScale(image, scaleFactor=1.1, minNeighbors=3)
         if len(faces) > 0:
             filename = os.path.join(str(emotion), f"{i}.jpg")
             cv2.imwrite(image_path + filename, image)
@@ -56,10 +55,9 @@ def load_data():
         label_path = os.path.join(dataset_path, label)
         for filename in os.listdir(label_path):
             images_path = os.path.join(label_path, filename)
-            image = cv2.imread(images_path, cv2.IMREAD_GRAYSCALE)
+            image = cv2.imread(images_path, cv2.IMREAD_COLOR)
             # 归一化
             image = image.astype(np.float32) / 255.0
-
             images.append(image)
             labels.append(label)
     return np.array(images), np.array(labels)
@@ -67,22 +65,16 @@ def load_data():
 
 # 定义数据增强函数
 def augment_data(image):
-    # 随机旋转
-    angle = np.random.randint(-15, 15)
-    rows, cols = image.shape
-    m = cv2.getRotationMatrix2D((cols / 2, rows / 2), angle, 1)
-    image = cv2.warpAffine(image, m, (cols, rows))
-    # 随机平移
-    tx = np.random.randint(-10, 10)
-    ty = np.random.randint(-10, 10)
-    m = np.float32([[1, 0, tx], [0, 1, ty]])
-    image = cv2.warpAffine(image, m, (cols, rows))
     # 随机缩放
     scale = np.random.uniform(0.8, 1.2)
     image = cv2.resize(image, None, fx=scale, fy=scale)
     # 随机水平翻转
-    if np.random.rand() > 0.5:
-        image = cv2.flip(image, 1)
+    image = cv2.flip(image, 1)
+    # 随机调整亮度、对比度、饱和度
+    alpha = np.random.uniform(0.7, 1.3)  # 对比度调整系数
+    beta = np.random.randint(-30, 30)  # 亮度调整值
+    # 对比度和亮度调整
+    image = cv2.convertScaleAbs(image, alpha=alpha, beta=beta)
     return image
 
 
@@ -95,8 +87,8 @@ def split_data(images, labels):
     return train_data, train_labels, val_data, val_labels, test_data, test_labels
 
 
-classify_images()
-
+# 分类
+# classify_images()
 # 加载数据集并进行预处理和划分
 images, labels = load_data()
 train_data, train_labels, val_data, val_labels, test_data, test_labels = split_data(images, labels)
