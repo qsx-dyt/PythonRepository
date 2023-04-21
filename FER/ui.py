@@ -5,6 +5,7 @@ from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QImage, QPixmap
 from PyQt5.QtWidgets import QApplication, QDialog, QFileDialog
 from PyQt5.uic import loadUi
+from qt_material import apply_stylesheet
 
 
 class EmotionRecognitionUI(QDialog):
@@ -25,8 +26,6 @@ class EmotionRecognitionUI(QDialog):
         # UI设置
         self.capture = None
         loadUi('util/form2.ui', self)
-        # 添加提示
-        self.ModelcomboBox.setPlaceholderText("请选择模型")
         self.ModelcomboBox.currentTextChanged.connect(self.select_model)
         self.cameraButton.clicked.connect(self.start_camera_recognition)
         self.imageButton.clicked.connect(self.select_image)
@@ -138,5 +137,6 @@ if __name__ == "__main__":
         style = f.read()
         app.setStyleSheet(style)
     ui = EmotionRecognitionUI()
+    # apply_stylesheet(app, theme='light_blue.xml')
     ui.show()
     sys.exit(app.exec_())

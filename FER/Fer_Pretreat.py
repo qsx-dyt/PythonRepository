@@ -34,7 +34,7 @@ def classify_images():
 
     # 将每个样本保存为图像文件
     for i in range(len(data)):
-        image = data['pixels'][i].reshape((48, 48)).astype('uint8')
+        image = data['pixels'][i].reshape((192, 192)).astype('uint8')
         emotion = data['emotion'][i]
         faces = face_cascade.detectMultiScale(image, scaleFactor=1.1, minNeighbors=3)
         if len(faces) > 0:
@@ -42,7 +42,7 @@ def classify_images():
             cv2.imwrite(image_path + filename, image)
             for j in range(3):
                 image2 = augment_data(image)
-                image2 = cv2.resize(image2, (48, 48))
+                image2 = cv2.resize(image2, (192, 192))
                 filename2 = os.path.join(str(emotion), f"{j}-{i}.jpg")
                 cv2.imwrite(image_path + filename2, image2)
 
